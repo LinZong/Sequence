@@ -65,12 +65,10 @@ string Sequence::longestConsecutive()
 string Sequence::longestRepeated()
 {
 	int ContextLength = Context.length();
-	char* Original=new char[1500000]{ 0 };
-	char** Address=new char*[1500000]{ 0 };	
-	copy(Context.begin(), Context.end(), Original);
+	char** Address=new char*[ContextLength+10]{ 0 };
 	int CommonLength = 0, StartOffset = 0, MaxLength = 0;
 	for (int i = 0; i<ContextLength; ++i)
-		Address[i] = &Original[i];
+		Address[i] = &Context[i];
 	sort(Address,Address+ContextLength,[](const char *a, const char* b){return strcmp(a,b)<0;});
 	for (int i = 0; i<ContextLength - 1; ++i)
 	{
