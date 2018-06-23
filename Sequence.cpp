@@ -71,7 +71,7 @@ string Sequence::longestRepeated()
 	int CommonLength = 0, StartOffset = 0, MaxLength = 0;
 	for (int i = 0; i<ContextLength; ++i)
 		Address[i] = &Original[i];
-	qsort(Address,ContextLength,sizeof(char*),[](const void *a, const void*b){return strcmp(*(char**)a, *(char**)b);});
+	sort(Address,Address+ContextLength,[](const char *a, const char* b){return strcmp(a,b)<0;});
 	for (int i = 0; i<ContextLength - 1; ++i)
 	{
 		CommonLength = ([](char *a, char* b) {int i = 0; while (*a && (*a++ == *b++)) ++i; return i; })(Address[i], Address[i + 1]);
