@@ -1,5 +1,5 @@
 #include"Sequence.h"
-#include<cstring>
+#include<string>
 #include<fstream>
 #include<vector>
 #include<algorithm>
@@ -64,5 +64,23 @@ string Sequence::longestConsecutive()
 }
 string Sequence::longestRepeated()
 {
-	
+	int ContextLength = Context.length();
+	char* Original=new char[1500000]{ 0 };
+	char** Address=new char*[1500000]{ 0 };	
+	copy(Context.begin(), Context.end(), Original);
+	int CommonLength = 0, StartOffset = 0, MaxLength = 0;
+	for (int i = 0; i<ContextLength; ++i)
+		Address[i] = &Original[i];
+	qsort(Address,ContextLength,sizeof(char*),[](const void *a, const void*b){return strcmp(*(char**)a, *(char**)b);});
+	for (int i = 0; i<ContextLength - 1; ++i)
+	{
+		CommonLength = ([](char *a, char* b) {int i = 0; while (*a && (*a++ == *b++)) ++i; return i; })(Address[i], Address[i + 1]);
+		if (CommonLength>MaxLength)
+		{
+			MaxLength = CommonLength;
+			StartOffset = i;
+		}
+	}
+	string Result=string(*(Address+StartOffset), *(Address+StartOffset)+MaxLength);
+	return Result;
 }
