@@ -38,30 +38,27 @@ int Sequence::numberOf(char base)
 }
 string Sequence::longestConsecutive()
 {
-	string longA = "A", longT = "T", longC = "C", longG = "G";
-	while (string::npos != Context.find(longA))
+	int TempPos=0;
+	typedef struct Pattern
 	{
-		longA.append("A");
-	}
-	while (string::npos != Context.find(longT))
-	{
-		longT.append("T");
-	}
-	while (string::npos != Context.find(longC))
-	{
-		longC.append("C");
-	}
-	while (string::npos != Context.find(longG))
-	{
-		longG.append("G");
-	}
-	longA.erase(0, 1);
-	longT.erase(0, 1);
-	longC.erase(0, 1);
-	longG.erase(0, 1);
-	int maxlength = max(max(max(longA.length(), longT.length()), longC.length()), longG.length());
-	if (longA.length() == maxlength) cout << longA << endl;
-	else if (longT.length() == maxlength) cout << longT << endl;
-	else if (longC.length() == maxlength) cout << longC << endl;
-	else if (longG.length() == maxlength) cout << longG << endl;
+		Pattern(string _Init_):_Pattern(_Init_),Pos(0){}
+		string _Pattern;
+		int Pos; 
+	} Comb;
+	Comb longA("A"), longT("T"), longC("C"), longG("G");
+	while (string::npos != (TempPos=Context.find(longA._Pattern)))
+		longA._Pattern.append("A"),longA.Pos=TempPos;
+	while (string::npos != (TempPos=Context.find(longT._Pattern)))
+		longT._Pattern.append("T"),longT.Pos=TempPos;
+	while (string::npos != (TempPos=Context.find(longC._Pattern)))
+		longC._Pattern.append("C"),longC.Pos=TempPos;
+	while (string::npos != (TempPos=Context.find(longG._Pattern)))
+		longG._Pattern.append("G"),longG.Pos=TempPos;
+	longA._Pattern.erase(0, 1);
+	longT._Pattern.erase(0, 1);
+	longC._Pattern.erase(0, 1);
+	longG._Pattern.erase(0, 1);
+	Comb CalcRank[]={longA,longT,longC,longG};
+	sort(CalcRank,CalcRank+4,[](Comb a,Comb b){return a.Pos<b.Pos;});
+	return CalcRank[0]._Pattern;
 }
