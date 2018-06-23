@@ -59,6 +59,10 @@ string Sequence::longestConsecutive()
 	longC._Pattern.erase(0, 1);
 	longG._Pattern.erase(0, 1);
 	Comb CalcRank[]={longA,longT,longC,longG};
-	sort(CalcRank,CalcRank+4,[](Comb a,Comb b){return a.Pos<b.Pos;});
+	sort(CalcRank,CalcRank+4,[](Comb a,Comb b){if(a._Pattern.length()==b._Pattern.length()) return a.Pos<b.Pos; return a._Pattern.length()>b._Pattern.length();});
 	return CalcRank[0]._Pattern;
+}
+string Sequence::longestRepeated()
+{
+	
 }
