@@ -4,12 +4,12 @@ int main(void)
 {
 	Sequence seq("dna.txt");
 	//Test functions
-	cout<<"¼î»ùÊýÄ¿ : "<< seq.length() << endl;
-	cout<<"×î³¤Á¬Ðø×Ó´® : "<<seq.longestConsecutive()<<endl;
+	cout<<"ç¢±åŸºæ•°ç›® : "<< seq.length() << endl;
+	cout<<"æœ€é•¿è¿žç»­å­ä¸² : "<<seq.longestConsecutive()<<endl;
 	cout<<"A : "<<seq.numberOf('A')<<endl; 
 	cout<<"T : "<<seq.numberOf('T')<<endl; 
 	cout<<"C : "<<seq.numberOf('C')<<endl; 
 	cout<<"G : "<<seq.numberOf('G')<<endl; 
-	cout<<"×î³¤ÖØ¸´×Ó´® : "<<seq.longestRepeated()<<endl;
+	cout<<"æœ€é•¿é‡å¤å­ä¸² : "<<seq.longestRepeated()<<endl;
 	return 0;
 }
